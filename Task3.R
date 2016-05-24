@@ -30,10 +30,4 @@ gapminder%>%
   ylab("lifespan")-> graph
 graph
 
-
-
-gapminder%>%
-  filter(year==1952)%>%
-  filter(gdpPercap>30000) -> Data
-
-Data
+#b.
