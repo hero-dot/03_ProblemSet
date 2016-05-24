@@ -21,15 +21,14 @@ gapminder%>%
   filter(year==1952)%>%
   group_by(continent)%>%
   ggplot(.,aes(x=gdpPercap,y=lifeExp))+
-  geom_point()+
+  geom_point(aes(color=continent,size=pop))+
+  scale_color_manual(values = c("blue","yellow","red","brown","green"))+
+  scale_size_continuous(range = c(2,20),limits = c(0,10e+07),breaks=seq(0,10e+07,10e+06))+
   scale_x_log10(breaks=c(400,4000,40000))+
-  scale_y_continuous(breaks=c(0,25,50,75,80),labels = c(0,"25 years", "50 years", "75 years",""))+
+  scale_y_continuous(limits = c(25,80), breaks = seq(25,80,25),labels = c("25   \nyears", "50   \nyears","75   \nyears"))+
   xlab("income")+
   ylab("lifespan")-> graph
 graph
-
-
-
 
 
 
