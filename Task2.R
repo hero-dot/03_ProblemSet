@@ -1,6 +1,7 @@
 #2 Corruption and human development 
 #a Basic plot structure (values colored by region)
 EconimistData <- read.csv("EconomistData.csv")
+library(ggplot2)
 a1 <- ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))
 a1 + geom_point()
 
