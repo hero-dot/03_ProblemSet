@@ -7,4 +7,5 @@
 
 BundesligaDaten = read.csv('D1.csv')
  str(BundesligaDaten)
- 
+#Test
+#Test
