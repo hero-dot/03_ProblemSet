@@ -1,5 +1,6 @@
 
 install.packages("gapminder")
+install.packages("dplyr")
 library(gapminder)
 library(dplyr)
 library(magrittr)
@@ -50,7 +51,7 @@ graph3b <- function(x){
     gapminderLocal%>%
       filter(year==x)%>%
       group_by(continent)%>%
-      ggplot(.,aes(x=gdpPercap,y=lifeExp))+
+      ggplot(.,aes(x=gdpPercap,y=lifeExp,frame=year))+
       geom_point(aes(color=continent,size=pop))+
       scale_color_manual(values = c("blue","yellow","red","brown","green"))+
       scale_size_continuous(range = c(2,20),limits = c(0,10e+07),breaks=seq(0,10e+07,10e+06))+
@@ -61,16 +62,15 @@ graph3b <- function(x){
 }
 
 
-for (year in gapminderLocal$year) {
+for (year in unique(gapminderLocal$year)) {
   graph3b(year)
 }
 
-
-
+lapply(unique(gapminderLocal$year), graph3b)
 
 years = 0
-for (years in gapminder$year) {
-  gapminder%>%
+for (years in unique(gapminderLocal$year)) {
+  gapminderLocal%>%
     filter(year==years)%>%
     group_by(continent)%>%
     ggplot(.,aes(x=gdpPercap,y=lifeExp))+
@@ -81,6 +81,12 @@ for (years in gapminder$year) {
     scale_y_continuous(limits = c(25,80), breaks = seq(25,80,25),labels = c("25   \nyears", "50   \nyears","75   \nyears"))+
     xlab("income")+
     ylab("lifespan")
-
+  Sys.sleep(1)
 }
-x11()
+graph <- ggplot(gapminderLocal, aes(gdpPercap, lifeExp, size=pop, color=continent,frame=year))+
+  geom_point()+scale_x_log10()
+install.packages("devtools")
+devtools::install_github("dgrtwo/gganimate")
+library("gganimate")
+gg_animate(graph)
+
