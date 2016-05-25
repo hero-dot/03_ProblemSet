@@ -60,7 +60,6 @@ graph3b <- function(x){
       ylab("lifespan")
 }
 
-x11()
 
 for (year in gapminderLocal$year) {
   graph3b(year)
