@@ -2,6 +2,18 @@
 #a Basic plot structure (values colored by region)
 EconimistData <- read.csv("EconomistData.csv")
 library(ggplot2)
+
+
+pointsToLabel <- c("Afghanistan", "Greece", "China", "India", "Rwanda", "Spain", "France", "United States", "Japan", "Norway", "Singapore")
+
+ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
+  geom_smooth(aes(group = 1), method = "lm", formula = y ~ log(x), se = FALSE, color = "red") +
+  geom_point(size = 4.5, shape = 21) +
+  geom_point(size = 4, shape = 21) +
+  geom_point(size = 3.5, shape = 21)+
+  geom_text(aes(label = Country),  color = "gray20",
+            data = subset(EconimistData, Country %in% pointsToLabel))
+
 a1 <- ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))
 a1 + geom_point()
 
