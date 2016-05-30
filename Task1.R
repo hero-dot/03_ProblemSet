@@ -25,6 +25,7 @@ EvalPoints <- function(FTR,Position)
   return(res)
 }
 
+#Version mit ggplot2
 BundesligaDaten%>%
   melt(measure.vars=c("HomeTeam", "AwayTeam"), value.name="Team", variable.name="Position")%>%
   select(Date,Team,Position,FTR)%>%
@@ -42,7 +43,7 @@ BundesligaDaten%>%
 
 TablePos
 
-
+#Version mit ggvis
 BundesligaDaten%>%
   melt(measure.vars=c("HomeTeam", "AwayTeam"), value.name="Team", variable.name="Position")%>%
   select(Date,Team,Position,FTR)%>%
