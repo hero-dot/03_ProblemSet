@@ -1,6 +1,12 @@
  
 # TODO
-# 
+# Y Achsenbeschriftung auf die rechte Seite
+# X Achsenbeschriftung oben einfügen
+# Darstellung auf Wertebereich beschränken
+# Punkte die nicht existieren auf der x Achse in hellerem Grau einfärben
+# Zusatzleistung Legende mit dem Logo ersetzen
+# x Achsenbeschriftung grau einfärben
+# Dynamische Darstellung mit ggvis
  
 library(reshape2)
 library(magrittr)
@@ -27,5 +33,9 @@ BundesligaDaten%>%
   mutate(CumPoints = cumsum(Points))%>%
   ggplot(.,aes(DayOfPlay,CumPoints,color=Team))+
   geom_line()+
-  scale_color_manual(values=c(#BA3733,#ED1248,#014E9E,#FDE100,#CA0000,#ED1C23,#0A3F86,#179D33,#005CA9,#00559E,#D71920,#E32221,#2A6601,#FE0000,#2167AC,#D9504E,#137B38,#4C9C00))-> TablePos
+  scale_color_manual(values=c("#BA3733","#ED1248","#014E9E","#FDE100","#CA0000","#ED1C23","#0A3F86","#179D33","#005CA9","#00559E","#D71920","#E32221","#2A6601","#FE0000","#2167AC","#D9504E","#137B38","#4C9C00"))+
+  xlim(1,34)+ ylim(0,90)+
+  scale_x_continuous(breaks=seq(1,34,1),limits=c(1,34),name="")+
+  scale_y_continuous(breaks=seq(0,90,1),limits=c(0,90),name="")+
+  coord_cartesian(xlim=c(1,34), ylim=c(0,90))-> TablePos
 TablePos
