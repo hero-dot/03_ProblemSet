@@ -97,7 +97,6 @@ graph <- ggplot(gapminderLocal, aes(gdpPercap, lifeExp, color=country))+
   geom_path()+scale_x_log10()+facet_wrap(~continent)+scale_color_manual(values = country_colors)+guides(color=F)
 graph
 
-
 #d. 
 
 #Create a graph of Kuwait, China, Singapore, India
