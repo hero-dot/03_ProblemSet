@@ -1,4 +1,4 @@
-
+install.packages("ggvis")
 install.packages("gapminder")
 library(gapminder)
 library(dplyr)
@@ -35,8 +35,8 @@ gapminderLocal%>%
   group_by(continent)%>%
   ggplot(.,aes(x=gdpPercap,y=lifeExp))+
   geom_point(aes(color=continent,size=pop))+
-  scale_color_manual(values = c("blue","yellow","red","brown","green"))+
-  scale_size_continuous(range = c(2,10),limits = c(0,10e+07),breaks=seq(0,10e+07,10e+06))+
+  scale_color_manual(values = c("cornflowerblue","yellow2","tomato","tan3", "seagreen1"))+
+  scale_size_continuous(range = c(2,6))+
   scale_x_log10(breaks=c(400,4000,40000))+
   scale_y_continuous(limits = c(25,80), breaks = seq(25,80,25),labels = c("25   \nyears", "50   \nyears","75   \nyears"))+
   xlab("income")+
@@ -105,9 +105,9 @@ graph
 #e.
 # Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
 gapminderLocal%>%
-  ggvis(~gdpPercap,~lifeExp,fill=~factor(continent))%>%
+  ggvis(~gdpPercap,~lifeExp, fill=~factor(continent))%>%
   filter(year==eval(input_slider(1952,2007,step=5)))%>%
   layer_points(size=~pop)%>%
   group_by(continent)%>%
-  layer_model_predictions(stroke=~continent)-> graph3b
+  layer_model_predictions(stroke=~continent, model = "lm")-> graph3b
 graph3b
