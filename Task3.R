@@ -18,7 +18,7 @@ gapminderLocal <- gapminder
 
 
 #a.
-gapminder%>%
+gapminderLocal%>%
   filter(year==1952)%>%
   group_by(continent)%>%
   ggplot(.,aes(x=gdpPercap,y=lifeExp))+
@@ -31,6 +31,7 @@ gapminder%>%
   ylab("lifespan")-> graph
 graph
 
+#b.
 gapminderLocal%>%
   group_by(continent)%>%
   ggplot(.,aes(x=gdpPercap,y=lifeExp))+
@@ -109,5 +110,9 @@ gapminderLocal%>%
   filter(year==eval(input_slider(1952,2007,step=5)))%>%
   layer_points(size=~pop)%>%
   group_by(continent)%>%
+<<<<<<< HEAD
   layer_model_predictions(stroke=~continent, model = "lm")-> graph3b
+=======
+  layer_model_predictions(stroke=~continent,model="lm")-> graph3b
+>>>>>>> e099e138efe5b160d80052ec3cc9fea358ecc240
 graph3b
