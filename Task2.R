@@ -30,9 +30,25 @@ ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
                                 "#F2583F",
                                 "#96503F")) +
   ggtitle("Corruption and Human development")+
-  theme(panel.grid.major.y= element_line(color = "grey"), axis.ticks.y = element_line(color = "grey"))-> graph
+  theme_minimal() + # start with a minimal theme and add what we need
+  theme(text = element_text(color = "gray20"),
+        legend.position = c("top"), # position the legend in the upper left 
+        legend.direction = "horizontal",
+        legend.justification = 0.1, # anchor point for legend.position.
+        legend.text = element_text(size = 11, color = "gray10"),
+        axis.text = element_text(face = "italic"),
+        axis.title.x = element_text(vjust = -1), # move title away from axis
+        axis.title.y = element_text(vjust = 2), # move away for axis
+        axis.ticks.y = element_blank(), # element_blank() is how we remove elements
+        axis.line = element_line(color = "gray40", size = 0.5),
+        axis.line.y = element_blank(),
+        panel.grid.major = element_line(color = "gray50", size = 0.5),
+        panel.grid.major.x = element_blank(),
+        panel.grid.major.y= element_line(color = "grey"),
+        axis.ticks.y = element_line(color = "grey")) -> graph
 
 graph
+
 
 a1 <- ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))
 a1 + geom_point()
