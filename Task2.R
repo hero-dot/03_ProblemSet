@@ -10,7 +10,7 @@ library(grid)
 pointsToLabel <- c("Afghanistan", "Greece", "China", "India", "Rwanda", "Spain", "France", "United States", "Japan", "Norway", "Singapore")
 
 ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
-  geom_smooth(aes(group = 1), method = "lm", formula = y ~ log(x), se = FALSE, color = "red") +
+  geom_smooth(aes(group = 1), method = "lm", formula = y ~ poly(x,2), se = FALSE, color = "red") +
   geom_point(size = 4.5, shape = 21) +
   geom_point(size = 4, shape = 21) +
   geom_point(size = 3.5, shape = 21)+
@@ -29,7 +29,7 @@ ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
                                 "#248E84",
                                 "#F2583F",
                                 "#96503F")) +
-  ggtitle("Corruption and Human development")+
+  ggtitle("Corruption and human development")+
   theme_minimal() + # start with a minimal theme and add what we need
   theme(text = element_text(color = "gray20"),
         legend.position = c("top"), # position the legend in the upper left 
@@ -40,7 +40,7 @@ ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
         axis.title.x = element_text(vjust = -1), # move title away from axis
         axis.title.y = element_text(vjust = 2), # move away for axis
         axis.ticks.y = element_blank(), # element_blank() is how we remove elements
-        axis.line = element_line(color = "gray40", size = 0.5),
+        axis.line.x = element_line(color = "gray40", size = 0.5),
         axis.line.y = element_blank(),
         panel.grid.major = element_line(color = "gray50", size = 0.5),
         panel.grid.major.x = element_blank(),
@@ -49,7 +49,7 @@ ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
 
 graph
 
-
+geom_po
 a1 <- ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))
 a1 + geom_point()
 
