@@ -3,7 +3,7 @@
 EconimistData <- read.csv("EconomistData.csv")
 library(ggplot2)
 install.packages("ggrepel")
-library(greppel)
+library(ggrepel)
 library(grid)
 
 
@@ -29,7 +29,8 @@ ggplot(EconimistData, aes(x = CPI, y = HDI, color = Region))+
                                 "#248E84",
                                 "#F2583F",
                                 "#96503F")) +
-  ggtitle("Corruption and Human development")-> graph
+  ggtitle("Corruption and Human development")+
+  theme(panel.grid.major.y= element_line(color = "grey"), axis.ticks.y = element_line(color = "grey"))-> graph
 
 graph
 
