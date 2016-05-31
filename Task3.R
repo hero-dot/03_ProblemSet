@@ -4,6 +4,7 @@ library(gapminder)
 library(dplyr)
 library(magrittr)
 library(ggplot2)
+library(ggvis)
 
 gapminderLocal <- gapminder
 
@@ -102,3 +103,11 @@ graph
 #Create a graph of Kuwait, China, Singapore, India
 
 #e.
+# Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
+gapminderLocal%>%
+  ggvis(~gdpPercap,~lifeExp,fill=~factor(continent))%>%
+  filter(year==eval(input_slider(1952,2007,step=5)))%>%
+  layer_points(size=~pop)%>%
+  group_by(continent)%>%
+  layer_model_predictions(stroke=~continent)-> graph3b
+graph3b
