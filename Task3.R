@@ -99,20 +99,44 @@ graph <- ggplot(gapminderLocal, aes(gdpPercap, lifeExp, color=country))+
   geom_path()+scale_x_log10()+facet_wrap(~continent)+scale_color_manual(values = country_colors)+guides(color=F)
 graph
 
+gapminderLocal%>%
+  filter(continent=="Europe")%>%
+  ggplot(.,aes(gdpPercap, lifeExp, color=country))+
+  geom_path()+
+  scale_x_log10()+
+  scale_color_manual(values = country_colors)-> graph3c
+graph3c
+
+countries = unique(as.character(gapminderLocal$country))
+gapminderLocal%>%
+  ggvis(~gdpPercap,~lifeExp)%>%
+  filter(country==eval(input_select(countries,map=as.character,selected="Afghanistan",label="Country")))%>%
+  layer_paths()%>%
+  layer_points()%>%
+  layer_text(text:=~year)-> graph
+graph
+
+layer_te
+filter(continent==eval(input_select(unique(.$continent),map=as.character,selected="Europe",label="Continent")))%>%
+
+filter(continent==eval(input_select(
+  choices=continent,
+  selected="Europe",
+  label ="Continents")))%>%
+
 #d. 
 
 #Create a graph of Kuwait, China, Singapore, India
-
+gapminderLocal%>%
+  filter(country=="China"|country=="India"|country=="Singapore"|country=="Kuwait")%>%
+  ggplot(., aes(gdpPercap, lifeExp,color=country))+geom_point()+
+  geom_line()+scale_y_continuous(limits = c(0,85))+scale_color_manual(values = c("black","red","green","blue"))->graph3d
+graph3d
 #e.
 # Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
 gapminderLocal%>%
   ggvis(~gdpPercap,~lifeExp, fill=~factor(continent))%>%
   filter(year==eval(input_slider(1952,2007,step=5)))%>%
-  layer_points(size=~pop)%>%
-  group_by(continent)%>%
-<<<<<<< HEAD
-  layer_model_predictions(stroke=~continent, model = "lm")-> graph3b
-=======
-  layer_model_predictions(stroke=~continent,model="lm")-> graph3b
->>>>>>> e099e138efe5b160d80052ec3cc9fea358ecc240
-graph3b
+  layer_points(size=~pop)-> graph3e
+graph3e
+input
