@@ -84,11 +84,18 @@ gapminderLocal%>%
   ggplot(., aes(gdpPercap, lifeExp,color=country))+geom_point()+
   geom_line()+scale_y_continuous(limits = c(0,85))+scale_color_manual(values = c("black","red","green","blue"))->graph3d
 graph3d
+
 #e.
 # Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
+
+continents  = unique(as.character(gapminderLocal$continent))
+selected = input_select(continents,label="Continent",selected="Asia",multiple = TRUE)
+
 gapminderLocal%>%
-  ggvis(~gdpPercap,~lifeExp, fill=~factor(continent))%>%
-  filter(year==eval(input_slider(1952,2007,step=5)))%>%
-  layer_points(size=~pop)-> graph3e
+  ggvis(~gdpPercap,~lifeExp, fill=~continent,size=~pop)%>%
+  filter(year==eval(input_slider(1952,2007,step=5, label="Year")))%>%
+  filter(continent == eval(selected)|continent == eval(selected))%>%
+  layer_points()%>%
+  add_legend(c("size","fill"))-> graph3e
 graph3e
-input
+
