@@ -65,7 +65,7 @@ gapminderLocal%>%
   filter(country==eval(input_select(countries,map=as.character,selected="Afghanistan",label="Country")))%>%
   layer_paths()%>%
   layer_points()%>%
-  layer_text(text:=~year)-> graph
+  layer_text(text:=~year, dx := 10, dy := -10)-> graph
 graph
 
 layer_te
@@ -85,6 +85,20 @@ gapminderLocal%>%
   geom_line()+scale_y_continuous(limits = c(0,85))+scale_color_manual(values = c("black","red","green","blue"))->graph3d
 graph3d
 
+<<<<<<< HEAD
+=======
+# Auffallend ist zunächst, das Indien und China von der Entwicklung der Lebenserwartung und dem pro-Kopf-Einkommen 
+# fast identisch sind. Der einzige nennenswerte Unterschied liegt in der von Beginn an höheren Lebenserwartung der 
+# Chinesen um ca. 7Jahre. Das Pro-Kopf-Einkommen steigt ebnfalls fast identisch an. Singapur passt von der Entwicklung 
+# der durchschnittlichen Lebenserwartung zu den beiden, da sie in den 55 Jahren der Betrachtung ebenfalls um ca. 20 Jahre
+# ansteigt(von 60 auf80 Jahre). Das jährliche Pro-Kopf-Einkommen steigt in Singapur im Verhältnis zu Indien und China
+# drastisch an, obwohl es sich dort über die gesamte Beobachtungsdauer verzehnfacht hat(auf ~ 4000 bis 5000$.Singapur 
+# verzehnfacht sein Einkommen in etwa auch, allerdings von ca. 4000$ auf ca. 47000$. 
+# Komplett aus der Reihe fällt Kuwait, da es das einzige der vier Länder ist, bei welchem die Lebenserwartung von 75 Jahren
+# auf knapp unter 60 sinkt. Das Pro-Kopf-Einkommen steigt zwar auch "nur" um das vierfache, aber Kuweit startete 1955 auch 
+# schon bei knapp 30000$ und steht 2007 bei einem stolzen durchschnittlichen Einkommen von über 110000$. 
+ 
+>>>>>>> 61b3866ec8bcd2ac94db621eab83b9ee6c5a534b
 #e.
 # Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
 
