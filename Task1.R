@@ -57,5 +57,3 @@ BundesligaDaten%>%
   add_axis("x",title="",values=seq(1,34,1),properties=axis_props(axis=list(stroke="grey"),grid=list(stroke="grey"),tick=list(stroke="grey"),labels=list(fill="grey")))%>%
   hide_legend("stroke")->TablePos
 TablePos
-
-layer_rects(x=0, x2=34, y=1, y2=90, fill:="#DADADA")

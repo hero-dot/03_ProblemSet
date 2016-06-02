@@ -47,34 +47,14 @@ graph
 
 #c.
 
-graph <- ggplot(gapminderLocal, aes(gdpPercap, lifeExp, color=country))+
-  geom_path()+scale_x_log10()+facet_wrap(~continent)+scale_color_manual(values = country_colors)+guides(color=F)
-graph
-
-gapminderLocal%>%
-  filter(continent=="Europe")%>%
-  ggplot(.,aes(gdpPercap, lifeExp, color=country))+
-  geom_path()+
-  scale_x_log10()+
-  scale_color_manual(values = country_colors)-> graph3c
-graph3c
-
 countries = unique(as.character(gapminderLocal$country))
 gapminderLocal%>%
   ggvis(~gdpPercap,~lifeExp)%>%
   filter(country==eval(input_select(countries,map=as.character,selected="Afghanistan",label="Country")))%>%
   layer_paths()%>%
   layer_points()%>%
-  layer_text(text:=~year, dx := 10, dy := -10)-> graph
-graph
-
-layer_te
-filter(continent==eval(input_select(unique(.$continent),map=as.character,selected="Europe",label="Continent")))%>%
-
-filter(continent==eval(input_select(
-  choices=continent,
-  selected="Europe",
-  label ="Continents")))%>%
+  layer_text(text:=~year, dx := 10, dy := -10)-> graph3c
+graph3c
 
 #d. 
 
@@ -85,8 +65,6 @@ gapminderLocal%>%
   geom_line()+scale_y_continuous(limits = c(0,85))+scale_color_manual(values = c("black","red","green","blue"))->graph3d
 graph3d
 
-<<<<<<< HEAD
-=======
 # Auffallend ist zunächst, das Indien und China von der Entwicklung der Lebenserwartung und dem pro-Kopf-Einkommen 
 # fast identisch sind. Der einzige nennenswerte Unterschied liegt in der von Beginn an höheren Lebenserwartung der 
 # Chinesen um ca. 7Jahre. Das Pro-Kopf-Einkommen steigt ebnfalls fast identisch an. Singapur passt von der Entwicklung 
@@ -98,9 +76,7 @@ graph3d
 # auf knapp unter 60 sinkt. Das Pro-Kopf-Einkommen steigt zwar auch "nur" um das vierfache, aber Kuweit startete 1955 auch 
 # schon bei knapp 30000$ und steht 2007 bei einem stolzen durchschnittlichen Einkommen von über 110000$. 
  
->>>>>>> 61b3866ec8bcd2ac94db621eab83b9ee6c5a534b
 #e.
-# Better Visualization with ggvis. Slider to switch the year. Display the past years with a different opacity
 
 continents  = unique(as.character(gapminderLocal$continent))
 selected = input_select(continents,label="Continent",selected="Asia",multiple = TRUE)
